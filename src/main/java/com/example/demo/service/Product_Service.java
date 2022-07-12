@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface Product_Service {
     //Product_Service Model
-    List<Product_Model> getAllUser();  //
+    List<Product_Model> getAllUser();
 
     public Product_Model saveProduct(Product_Model product);
 
