@@ -64,6 +64,7 @@ productReposity.deleteById(id);
 
 
     // Product_Color_Service
+    //Add new methos
     @Autowired
     private Product_Color_Repo product_repository;
     @Override

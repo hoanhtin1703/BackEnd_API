@@ -22,6 +22,7 @@ public interface Product_Service {
     void deleteBrand(Long id);
     Optional<Brand_Model> findBrandById(Long id);
     // Product_Color Service
+    //add method
     List<Product_Color_Model> getAllProductColor();
 
     Product_Color_Model addProductColor(Product_Color_Model product_color_model);

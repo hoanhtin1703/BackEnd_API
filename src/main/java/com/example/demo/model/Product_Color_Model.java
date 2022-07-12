@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "product_color")
+@Table(name = "product_color") //Product Color Model
 @IdClass(ColorId.class)
 public class Product_Color_Model implements Serializable {
 

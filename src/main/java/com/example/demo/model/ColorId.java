@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
-
+// Set 2 keys
 public class ColorId implements Serializable {
 
     private int product_id;
