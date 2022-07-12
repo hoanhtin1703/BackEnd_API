@@ -72,4 +72,9 @@ return new ResponseEntity<>(productReposity.findByNameContaining(keyword), HttpS
     public ResponseEntity<List<Product_Model>> search() {
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
+
+    @GetMapping("getaall2")
+    public ResponseEntity<List<Product_Model>> hello() {
+        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
+    }
 }
