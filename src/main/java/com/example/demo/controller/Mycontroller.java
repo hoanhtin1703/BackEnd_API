@@ -65,4 +65,10 @@ public class Mycontroller {
 return new ResponseEntity<>(productReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
+   // tins them moi
+    @GetMapping("search")
+    public ResponseEntity<List<Product_Model>> search(){
+        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
+
+    }
 }
