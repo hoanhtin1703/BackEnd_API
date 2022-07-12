@@ -13,27 +13,24 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("api/")
+@RequestMapping("product/")
 public class Mycontroller {
     @Autowired
     private ProductReposity productReposity;
     @Autowired
     private Product_ServiceIml userService;
     @GetMapping("data")
-    public List<Product_Model> text(){
-        return userService.getAllUser();
-    }
-    @GetMapping("hello")
     // Hiển thị
     List<Product_Model> demo(){
         return userService.getAllUser();
     }
 //Thêm
-    @PostMapping("save")
-    public String save(@RequestBody Product_Model product){
-        userService.saveUser(product);
-        return "Them thanh cong";
-    }
+@PostMapping("save")
+public ResponseEntity<Product_Model> save(@RequestBody Product_Model product){
+    return  new ResponseEntity<Product_Model>(userService.saveProduct(product),HttpStatus.OK);
+
+}
+
     // Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<Product_Model> edit(@PathVariable("id") Long id){
@@ -43,7 +40,7 @@ public class Mycontroller {
     // Chỉnh sửa
     @PutMapping("update/{id}")
     public ResponseEntity<Product_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Product_Model model) {
-        return new ResponseEntity<Product_Model>( userService.saveUser(model), HttpStatus.OK);
+        return new ResponseEntity<Product_Model>( userService.saveProduct(model), HttpStatus.OK);
     }
     // Xóa
     @DeleteMapping("product/{id}")
