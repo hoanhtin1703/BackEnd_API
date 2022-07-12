@@ -14,7 +14,7 @@ public class Product_Color_Controllers {
 
 
     private Product_ServiceIml productService;
-    @GetMapping("show") //Show Product Color
+    @GetMapping("show") //Show Product Color //
         public  List<Product_Color_Model> getAllProductColor(){
             return productService.getAllProductColor();
     }

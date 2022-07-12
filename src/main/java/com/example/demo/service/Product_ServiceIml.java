@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 public class Product_ServiceIml implements Product_Service {
-    //Product Service
+    //Product
     @Autowired
     private ProductReposity productReposity;
 

@@ -22,7 +22,7 @@ public class Product_Color_Model implements Serializable {
     public Product_Color_Model(int product_id, String image_color) {
         this.product_id = product_id;
         this.image_color = image_color;
-    }
+    }//
 
     public int getProduct_id() {
         return product_id;
