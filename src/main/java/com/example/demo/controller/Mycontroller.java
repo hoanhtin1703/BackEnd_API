@@ -62,10 +62,5 @@ public ResponseEntity<Product_Model> save(@RequestBody Product_Model product){
         return new ResponseEntity<>(productReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
-   // tins them moi
-    @GetMapping("search")
-    public ResponseEntity<List<Product_Model>> search(){
-        return new ResponseEntity<>(productService.getAllProduct(), HttpStatus.OK);
 
-    }
 }

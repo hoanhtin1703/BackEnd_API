@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Brand_Model;
-import com.example.demo.model.Product_Color_Model;
-import com.example.demo.model.Product_Model;
-import com.example.demo.model.User_Model;
+import com.example.demo.model.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +25,13 @@ public interface Product_Service {
     User_Model saveUser(User_Model user);
     void deleteUser(Long id);
     Optional<User_Model> findUserById(Long id);
-
+    // Oder Service
+    //Oder_Detail_Service
+   // Contact Service
+    List<Contact_Model> getContact();
+    Contact_Model saveContact(Contact_Model contact);
+    void deleteContact(Long id);
+    Optional<Contact_Model> findContactById(Long id);
 
     // Product Color Service
     List<Product_Color_Model> getAllProductColor();

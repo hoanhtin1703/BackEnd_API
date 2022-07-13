@@ -1,13 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Brand_Model;
-import com.example.demo.model.Product_Color_Model;
-import com.example.demo.model.Product_Model;
-import com.example.demo.model.User_Model;
-import com.example.demo.repo.BrandReposity;
-import com.example.demo.repo.ProductReposity;
-import com.example.demo.repo.Product_Color_Reposity;
-import com.example.demo.repo.UserReposity;
+import com.example.demo.model.*;
+import com.example.demo.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -92,7 +86,30 @@ productReposity.deleteById(id);
     }
 
 
-    //product color service
+    //Contact Service Imp
+    @Autowired
+    ContactReposity contactReposity;
+    @Override
+    public List<Contact_Model> getContact() {
+        return contactReposity.findAll();
+    }
+    @Override
+    public Contact_Model saveContact(Contact_Model contact) {
+        return contactReposity.save(contact);
+    }
+
+    @Override
+    public void deleteContact(Long id) {
+    contactReposity.deleteById(id);
+    }
+
+    @Override
+    public Optional<Contact_Model> findContactById(Long id) {
+        return contactReposity.findById(id);
+    }
+
+
+    //product color service imp
     @Autowired
     private Product_Color_Reposity product_repository;
     @Override

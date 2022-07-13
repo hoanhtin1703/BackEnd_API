@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Brand_Model;
 import com.example.demo.model.User_Model;
-import com.example.demo.model.User_Model;
-import com.example.demo.repo.ProductReposity;
 import com.example.demo.repo.UserReposity;
 import com.example.demo.service.Product_ServiceIml;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,7 @@ public class User_Controller {
     private UserReposity userReposity;
     @Autowired
     Product_ServiceIml user_service;
-    @GetMapping("get-user")
+    @GetMapping("data")
     List<User_Model> getAllUser(){
         return user_service.getAllUser();
 

@@ -7,6 +7,7 @@ import java.util.Date;
 //@Setter
 
 @Entity
+
 @Table(name = "product")
 public class Product_Model {
     @Id
