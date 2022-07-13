@@ -43,11 +43,11 @@ public class Contact_Controller {
     }
 
     // Xóa
-    @DeleteMapping("product/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Contact_Model> deleteBook(@PathVariable("id") long id) {
         try {
 
-            contact_service.deleteUser(id);
+            contact_service.deleteContact(id);
             return new ResponseEntity<Contact_Model>(HttpStatus.OK);
         } catch (Exception e) {
             // TODO: handle exception
@@ -55,11 +55,7 @@ public class Contact_Controller {
         }
 
     }
-    //    Tìm Kiếm
-//    @GetMapping("search/{keyword}")
-//    public ResponseEntity<List<Contact_Model>> search(@PathVariable("keyword") String keyword){
-//        return new ResponseEntity<>(contact_service.findByNameContaining(keyword), HttpStatus.OK);
-//}
+
 
 
 }

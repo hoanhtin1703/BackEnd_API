@@ -14,7 +14,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("product/")
-public class Mycontroller {
+public class Product_Controller {
     @Autowired
     private ProductReposity productReposity;
     @Autowired
@@ -43,11 +43,11 @@ public ResponseEntity<Product_Model> save(@RequestBody Product_Model product){
         return new ResponseEntity<Product_Model>( productService.saveProduct(model), HttpStatus.OK);
     }
     // Xóa
-    @DeleteMapping("product/{id}")
-    public ResponseEntity<Product_Model> deleteBook(@PathVariable("id") long id){
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Product_Model> deleteProduct(@PathVariable("id") long id){
         try {
 
-           productService.deleteUser(id);
+           productService.deleteProduct(id);
                 return new ResponseEntity<Product_Model>(HttpStatus.OK);
         }
         catch (Exception e) {
@@ -62,5 +62,24 @@ public ResponseEntity<Product_Model> save(@RequestBody Product_Model product){
         return new ResponseEntity<>(productReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
+
+// Xóa theo 2 key
+//@RequestMapping("search")
+//public ResponseEntity<List<Product_Model>> search(@RequestParam Map<Long,String> requestParam)
+//
+// throws Exception {
+//    Long id = Long.valueOf(requestParam.get("id"));
+//    String name=requestParam.get("name");
+//
+//
+//    System.out.println("id : " + id +
+//            "\n name :" + name
+//
+//    );
+//    // your code logic
+//    return new ResponseEntity<>( HttpStatus.OK);
+//}
+
+
 
 }
