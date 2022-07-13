@@ -48,7 +48,7 @@ public class User_Controller {
         return new ResponseEntity<User_Model>( user_service.saveUser(model), HttpStatus.OK);
     }
     // Xóa
-    @DeleteMapping("product/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<User_Model> deleteUser(@PathVariable("id") long id){
         try {
 

@@ -126,4 +126,79 @@ productReposity.deleteById(id);
     public void deleteProductColor(Long product_id) {
         product_repository.deleteById(product_id);
     }
+
+
+    //Voucher service imp
+    @Autowired
+    private VoucherReposity voucherRepository;
+
+    @Override
+    public List<Voucher_Model> getAllVoucher() {
+        return voucherRepository.findAll();
+    }
+
+    @Override
+    public Voucher_Model saveVoucher(Voucher_Model voucher) {
+        return voucherRepository.save(voucher);
+    }
+
+    @Override
+    public void deleteVoucher(Long id) {
+        voucherRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Voucher_Model> findVoucherById(Long id) {
+        return voucherRepository.findById(id);
+    }
+
+
+    //Voucher service imp
+    @Autowired
+    private SliderReposity sliderRepository;
+
+    @Override
+    public List<Slider_Model> getAllSlider() {
+        return sliderRepository.findAll();
+    }
+
+    @Override
+    public Slider_Model saveSlider(Slider_Model slider) {
+        return sliderRepository.save(slider);
+    }
+
+    @Override
+    public void deleteSlider(Long id) {
+        sliderRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Slider_Model> findSliderById(Long id) {
+        return sliderRepository.findById(id);
+    }
+
+
+    //Comment service imp
+    @Autowired
+    private CommentReposity commentRepository;
+
+    @Override
+    public List<Comment_Model> getAllComment() {
+        return commentRepository.findAll();
+    }
+
+    @Override
+    public Comment_Model saveComment(Comment_Model comment) {
+        return commentRepository.save(comment);
+    }
+
+    @Override
+    public void deleteComment(Long id) {
+        commentRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Comment_Model> findCommentById(Long id) {
+        return commentRepository.findById(id);
+    }
 }

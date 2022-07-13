@@ -40,4 +40,25 @@ public interface Product_Service {
 
     void deleteProductColor(Long product_id);
 
+
+    // Voucher Model Service
+    List<Voucher_Model> getAllVoucher();
+    Voucher_Model saveVoucher(Voucher_Model voucher);
+    void deleteVoucher(Long id);
+    Optional<Voucher_Model> findVoucherById(Long id);
+
+
+    //  Slider Service
+    List<Slider_Model> getAllSlider();
+    Slider_Model saveSlider(Slider_Model slider);
+    void deleteSlider(Long id);
+    Optional<Slider_Model> findSliderById(Long id);
+
+
+    //  Comment Service
+    List<Comment_Model> getAllComment();
+    Comment_Model saveComment(Comment_Model comment);
+    void deleteComment(Long id);
+    Optional<Comment_Model> findCommentById(Long id);
+
 }
