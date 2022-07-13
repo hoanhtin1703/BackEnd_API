@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Brand_Model;
+import com.example.demo.model.Product_Color_Model;
 import com.example.demo.model.Product_Model;
 import com.example.demo.model.User_Model;
 import com.example.demo.repo.BrandReposity;
 import com.example.demo.repo.ProductReposity;
+import com.example.demo.repo.Product_Color_Reposity;
 import com.example.demo.repo.UserReposity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -90,4 +92,21 @@ productReposity.deleteById(id);
     }
 
 
+    //product color service
+    @Autowired
+    private Product_Color_Reposity product_repository;
+    @Override
+    public List<Product_Color_Model> getAllProductColor() {
+        return product_repository.findAll();
+    }
+
+    @Override
+    public Product_Color_Model addProductColor(Product_Color_Model product_color_model) {
+        return (Product_Color_Model) product_repository.save(product_color_model);
+    }
+
+    @Override
+    public void deleteProductColor(Long product_id) {
+        product_repository.deleteById(product_id);
+    }
 }

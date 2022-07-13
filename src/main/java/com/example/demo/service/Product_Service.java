@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Brand_Model;
+import com.example.demo.model.Product_Color_Model;
 import com.example.demo.model.Product_Model;
 import com.example.demo.model.User_Model;
 
@@ -27,5 +28,13 @@ public interface Product_Service {
     User_Model saveUser(User_Model user);
     void deleteUser(Long id);
     Optional<User_Model> findUserById(Long id);
+
+
+    // Product Color Service
+    List<Product_Color_Model> getAllProductColor();
+
+    Product_Color_Model addProductColor(Product_Color_Model product_color_model);
+
+    void deleteProductColor(Long product_id);
 
 }
