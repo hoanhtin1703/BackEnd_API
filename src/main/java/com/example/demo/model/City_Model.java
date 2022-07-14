@@ -3,14 +3,16 @@ package com.example.demo.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "brand")
-public class Brand_Model {
+@Table(name="city")
+public class City_Model {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name="id")
     private Long id;
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
+    @Column(name="country_id")
+    private int country_id;
     public Long getId() {
         return id;
     }
@@ -27,21 +29,33 @@ public class Brand_Model {
         this.name = name;
     }
 
-    public Brand_Model(Long id, String name) {
+    public int getCountry_id() {
+        return country_id;
+    }
+
+    public void setCountry_id(int country_id) {
+        this.country_id = country_id;
+    }
+
+    public City_Model(Long id, String name, int country_id) {
         this.id = id;
         this.name = name;
+        this.country_id = country_id;
+    }
+
+    public City_Model() {
     }
 
     @Override
     public String toString() {
-        return "Brand_Model{" +
+        return "City_Model{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", country_id=" + country_id +
                 '}';
     }
 
-    public Brand_Model() {
-    }
+
 
 
 }

@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "country")
-
 public class Country_Model {
 
     @Id

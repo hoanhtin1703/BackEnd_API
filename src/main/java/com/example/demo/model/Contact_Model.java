@@ -5,6 +5,26 @@ import javax.persistence.*;
 @Entity
 @Table(name="contact")
 public class Contact_Model {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "logo")
+    private String logo;
+    @Column(name = "fb_link")
+    private String fb_link;
+    @Column(name = "instagram_link")
+    private String instagram_link;
+    @Column(name = "yt_link")
+    private String yt_link;
+    @Column(name = "twitter_link")
+    private String twitter_link;
     public Long getId() {
         return id;
     }
@@ -107,26 +127,7 @@ public class Contact_Model {
         this.twitter_link = twitter_link;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "phone")
-    private String phone;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "logo")
-    private String logo;
-    @Column(name = "fb_link")
-    private String fb_link;
-    @Column(name = "instagram_link")
-    private String instagram_link;
-    @Column(name = "yt_link")
-    private String yt_link;
-    @Column(name = "twitter_link")
-    private String twitter_link;
+
 
 
 }

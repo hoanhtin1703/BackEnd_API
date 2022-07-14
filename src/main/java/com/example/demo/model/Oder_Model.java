@@ -6,6 +6,30 @@ import java.util.Date;
 @Entity
 @Table(name="order")
 public class Oder_Model {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "date")
+    private Date date;
+    @Column(name = "sender_name")
+    private String sender_name;
+    @Column(name = "sender_phone")
+    private String sender_phone;
+    @Column(name = "country")
+    private String country;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "district")
+    private String district;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "total")
+    private Long total;
+    @Column(name = "user_id")
+    private int user_id;
+    @Column(name = "status")
+    private int status;
     public Long getId() {
         return id;
     }
@@ -111,30 +135,7 @@ public class Oder_Model {
                 '}';
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-    @Column(name = "date")
-    private Date date;
-    @Column(name = "sender_name")
-    private String sender_name;
-    @Column(name = "sender_phone")
-    private String sender_phone;
-    @Column(name = "country")
-    private String country;
-    @Column(name = "city")
-    private String city;
-    @Column(name = "district")
-    private String district;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "total")
-    private Long total;
-    @Column(name = "user_id")
-    private int user_id;
-    @Column(name = "status")
-    private int status;
+
 
     public Oder_Model(Long id, Date date, String sender_name, String sender_phone, String country, String city, String district, String address, Long total, int user_id, int status) {
         this.id = id;

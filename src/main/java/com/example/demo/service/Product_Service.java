@@ -67,13 +67,23 @@ public interface Product_Service {
     Country_Model saveCountry(Country_Model country);
     void deleteCountry(Long id);
     Optional<Country_Model> findCountryById(Long id);
+    // City Service
+    List<City_Model> getAllCity();
+    City_Model saveCity(City_Model city);
+    void deleteCity(Long id);
+    Optional<City_Model> findCityById(Long id);
+    // District Service
+    List<District_Model> getAllDistrict();
+    District_Model saveDistrict(District_Model district);
+    void deleteDistrict(Long id);
+    Optional<District_Model> findDistrictById(Long id);
 
 
     // Product Discount Service
-    List<Product_Discount_Model> getAllProductDiscount();
-
-    Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model);
-
-    void deleteProductDiscount(Long product_id);
+//    List<Product_Discount_Model> getAllProductDiscount();
+//
+//    Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model);
+//
+//    void deleteProductDiscount(Long product_id);
 
 }

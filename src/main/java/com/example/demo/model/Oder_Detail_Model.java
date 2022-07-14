@@ -5,6 +5,20 @@ import javax.persistence.*;
 @Entity
 @Table(name="oder_detail")
 public class Oder_Detail_Model {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "product_image")
+    private String product_image;
+    @Column(name = "product_size")
+    private int product_size;
+    @Column(name = "product_name")
+    private String product_name;
+    @Column(name = "quantity")
+    private int quantity;
+    @Column(name = "order_id")
+    private int order_id;
     public Long getId() {
         return id;
     }
@@ -77,19 +91,6 @@ public class Oder_Detail_Model {
                 '}';
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-    @Column(name = "product_image")
-    private String product_image;
-    @Column(name = "product_size")
-    private int product_size;
-    @Column(name = "product_name")
-    private String product_name;
-    @Column(name = "quantity")
-    private int quantity;
-    @Column(name = "order_id")
-    private int order_id;
+
 
 }
