@@ -11,7 +11,7 @@ import java.util.Date;
 @Table(name = "product")
 public class Product_Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="id")
 private  Long id;
     @Column(name ="name")
@@ -113,8 +113,22 @@ private int purchase_price;
         this.name = name;
     }
 
-    public Product_Model(Long id, int purchase_price, String description, int brand_id, int status, int staff_id, int price, Date created_at, Date updated_at, String name) {
+//    public Product_Model(Long id, int purchase_price, String description, int brand_id, int status, int staff_id, int price, Date created_at, Date updated_at, String name) {
+//        this.id = id;
+//        this.purchase_price = purchase_price;
+//        this.description = description;
+//        this.brand_id = brand_id;
+//        this.status = status;
+//        this.staff_id = staff_id;
+//        this.price = price;
+//        this.created_at = created_at;
+//        this.updated_at = updated_at;
+//        this.name = name;
+//    }
+
+    public Product_Model(Long id, String name, int purchase_price, String description, int brand_id, int status, int staff_id, int price, Date created_at, Date updated_at) {
         this.id = id;
+        this.name = name;
         this.purchase_price = purchase_price;
         this.description = description;
         this.brand_id = brand_id;
@@ -123,7 +137,6 @@ private int purchase_price;
         this.price = price;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.name = name;
     }
 
     public Product_Model() {
@@ -133,6 +146,7 @@ private int purchase_price;
     public String toString() {
         return "Product_Model{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", purchase_price=" + purchase_price +
                 ", description='" + description + '\'' +
                 ", brand_id=" + brand_id +
@@ -141,9 +155,9 @@ private int purchase_price;
                 ", price=" + price +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
-                ", name='" + name + '\'' +
                 '}';
     }
+
     //    @Override
 //    public String toString() {
 //        return "Employee{" +
