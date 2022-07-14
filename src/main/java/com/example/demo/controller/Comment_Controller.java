@@ -20,30 +20,32 @@ public class Comment_Controller {
     private CommentReposity commentReposity;
     @Autowired
     Product_ServiceIml comment_service;
+    // Hiển Thị
     @GetMapping("data")
     List<Comment_Model> getAllComment(){
         return comment_service.getAllComment();
 
     }
+    // Thêm
     @PostMapping("save")
     public ResponseEntity<Comment_Model> save(@RequestBody Comment_Model comment){
         return  new ResponseEntity<Comment_Model>(comment_service.saveComment(comment), HttpStatus.OK);
     }
-
+// Tìm kiếm
     @GetMapping("search/{keyword}")
     public ResponseEntity<List<Comment_Model>> search(@PathVariable("keyword") String keyword){
         return new ResponseEntity<>(commentReposity.findByCommentContaining(keyword), HttpStatus.OK);
 
     }
-
+// Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<Comment_Model> edit(@PathVariable("id") Long id){
         Optional<Comment_Model> item = comment_service.findCommentById(id);
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<Comment_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Comment_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<Comment_Model> updateTutorial( @RequestBody Comment_Model model) {
         return new ResponseEntity<Comment_Model>( comment_service.saveComment(model), HttpStatus.OK);
     }
     // Xóa

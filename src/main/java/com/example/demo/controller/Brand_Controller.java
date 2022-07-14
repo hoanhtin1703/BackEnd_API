@@ -38,8 +38,8 @@ public class Brand_Controller {
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<Brand_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Brand_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<Brand_Model> updateTutorial( @RequestBody Brand_Model model) {
         return new ResponseEntity<Brand_Model>( brand_service.saveBrand(model), HttpStatus.OK);
     }
     // Xóa

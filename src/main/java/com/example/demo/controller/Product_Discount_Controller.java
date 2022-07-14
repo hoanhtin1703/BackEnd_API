@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.*;
 import com.example.demo.model.Product_Discount_Model;
-import com.example.demo.repo.ProductReposity;
 import com.example.demo.repo.Product_Discount_Reposity;
 import com.example.demo.service.Product_ServiceIml;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("product/discount/")
@@ -33,7 +29,7 @@ public class Product_Discount_Controller {
     @PostMapping("save")
     public Product_Discount_Model addProductDiscount(@RequestBody Product_Discount_Model product_discount_model){
 
-        return (Product_Discount_Model)  productService.saveProductDiscount(product_discount_model);
+        return (Product_Discount_Model)  productService.addProductDiscount(product_discount_model);
     }
 
     // Tìm kiếm
@@ -64,7 +60,7 @@ public class Product_Discount_Controller {
     // Update
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public ResponseEntity<Product_Discount_Model> update(@RequestBody Product_Discount_Model model){
-        return new ResponseEntity<Product_Discount_Model>( productService.saveProductDiscount(model), HttpStatus.OK);
+        return new ResponseEntity<Product_Discount_Model>( productService.addProductDiscount(model), HttpStatus.OK);
     }
 
 }

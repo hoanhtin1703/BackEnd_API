@@ -19,30 +19,32 @@ public class District_Controller {
     private DistrictReposity DistrictReposity;
     @Autowired
     Product_ServiceIml district_service;
+    // Hiển thị
     @GetMapping("data")
     List<District_Model> getAllDistrict(){
         return district_service.getAllDistrict();
 
     }
+    // thêm
     @PostMapping("save")
     public ResponseEntity<District_Model> save(@RequestBody District_Model District){
         return  new ResponseEntity<District_Model>(district_service.saveDistrict(District), HttpStatus.OK);
     }
-
+// Tìm kiếm
     @GetMapping("search/{keyword}")
     public ResponseEntity<List<District_Model>> search(@PathVariable("keyword") String keyword){
         return new ResponseEntity<>(DistrictReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
-
+// Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<District_Model> edit(@PathVariable("id") Long id){
         Optional<District_Model> item = district_service.findDistrictById(id);
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<District_Model> updateTutorial(@PathVariable("id") long id, @RequestBody District_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<District_Model> updateTutorial( @RequestBody District_Model model) {
         return new ResponseEntity<District_Model>( district_service.saveDistrict(model), HttpStatus.OK);
     }
     // Xóa

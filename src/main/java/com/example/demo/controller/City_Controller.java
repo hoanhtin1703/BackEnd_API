@@ -19,30 +19,32 @@ public class City_Controller {
     private CityReposity CityReposity;
     @Autowired
     Product_ServiceIml city_service;
+    // Hiển Thị
     @GetMapping("data")
     List<City_Model> getAllCity(){
         return city_service.getAllCity();
 
     }
+    // Thêm
     @PostMapping("save")
     public ResponseEntity<City_Model> save(@RequestBody City_Model City){
         return  new ResponseEntity<City_Model>(city_service.saveCity(City), HttpStatus.OK);
     }
-
+// Tìm kiếm
     @GetMapping("search/{keyword}")
     public ResponseEntity<List<City_Model>> search(@PathVariable("keyword") String keyword){
         return new ResponseEntity<>(CityReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
-
+// Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<City_Model> edit(@PathVariable("id") Long id){
         Optional<City_Model> item = city_service.findCityById(id);
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<City_Model> updateTutorial(@PathVariable("id") long id, @RequestBody City_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<City_Model> updateTutorial(@RequestBody City_Model model) {
         return new ResponseEntity<City_Model>( city_service.saveCity(model), HttpStatus.OK);
     }
     // Xóa

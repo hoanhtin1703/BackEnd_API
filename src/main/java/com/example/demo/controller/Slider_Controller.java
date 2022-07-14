@@ -20,30 +20,32 @@ public class Slider_Controller {
     private SliderReposity sliderReposity;
     @Autowired
     Product_ServiceIml slider_service;
+    // Hiển thị
     @GetMapping("data")
     List<Slider_Model> getAllSlider(){
         return slider_service.getAllSlider();
 
     }
+    // Thêm
     @PostMapping("save")
     public ResponseEntity<Slider_Model> save(@RequestBody Slider_Model slider){
         return  new ResponseEntity<Slider_Model>(slider_service.saveSlider(slider), HttpStatus.OK);
     }
-
+// Tìm kiếm
     @GetMapping("search/{keyword}")
     public ResponseEntity<List<Slider_Model>> search(@PathVariable("keyword") String keyword){
         return new ResponseEntity<>(sliderReposity.findByTextContaining(keyword), HttpStatus.OK);
 
     }
-
+// Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<Slider_Model> edit(@PathVariable("id") Long id){
         Optional<Slider_Model> item = slider_service.findSliderById(id);
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<Slider_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Slider_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<Slider_Model> updateTutorial( @RequestBody Slider_Model model) {
         return new ResponseEntity<Slider_Model>( slider_service.saveSlider(model), HttpStatus.OK);
     }
     // Xóa

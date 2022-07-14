@@ -21,30 +21,32 @@ public class User_Controller {
     private UserReposity userReposity;
     @Autowired
     Product_ServiceIml user_service;
+    // Hiển Thị
     @GetMapping("data")
     List<User_Model> getAllUser(){
         return user_service.getAllUser();
 
     }
+    // Thêm
     @PostMapping("save")
     public ResponseEntity<User_Model> save(@RequestBody User_Model user){
         return  new ResponseEntity<User_Model>(user_service.saveUser(user), HttpStatus.OK);
     }
-
+// Tìm Kiếm
     @GetMapping("search/{keyword}")
     public ResponseEntity<List<User_Model>> search(@PathVariable("keyword") String keyword){
         return new ResponseEntity<>(userReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
-
+// Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<User_Model> edit(@PathVariable("id") Long id){
         Optional<User_Model> item = user_service.findUserById(id);
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<User_Model> updateTutorial(@PathVariable("id") long id, @RequestBody User_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<User_Model> updateTutorial(@RequestBody User_Model model) {
         return new ResponseEntity<User_Model>( user_service.saveUser(model), HttpStatus.OK);
     }
     // Xóa

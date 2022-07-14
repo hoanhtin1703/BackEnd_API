@@ -20,30 +20,32 @@ public class Country_Controller {
     private CountryReposity countryReposity;
     @Autowired
     Product_ServiceIml country_service;
+    // Hiển Thị
     @GetMapping("data")
     List<Country_Model> getAllCountry(){
         return country_service.getAllCountry();
 
     }
+    // Thêm
     @PostMapping("save")
     public ResponseEntity<Country_Model> save(@RequestBody Country_Model country){
         return  new ResponseEntity<Country_Model>(country_service.saveCountry(country), HttpStatus.OK);
     }
-
+// Tìm kiếm
     @GetMapping("search/{keyword}")
     public ResponseEntity<List<Country_Model>> search(@PathVariable("keyword") String keyword){
         return new ResponseEntity<>(countryReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
-
+// Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<Country_Model> edit(@PathVariable("id") Long id){
         Optional<Country_Model> item = country_service.findCountryById(id);
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<Country_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Country_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<Country_Model> updateTutorial( @RequestBody Country_Model model) {
         return new ResponseEntity<Country_Model>( country_service.saveCountry(model), HttpStatus.OK);
     }
     // Xóa

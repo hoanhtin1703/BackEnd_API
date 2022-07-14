@@ -38,8 +38,8 @@ public class Contact_Controller {
     }
 
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<Contact_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Contact_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<Contact_Model> updateTutorial( @RequestBody Contact_Model model) {
         return new ResponseEntity<Contact_Model>(contact_service.saveContact(model), HttpStatus.OK);
     }
 

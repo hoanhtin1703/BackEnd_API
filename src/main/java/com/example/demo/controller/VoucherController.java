@@ -20,30 +20,32 @@ public class VoucherController {
     private VoucherReposity voucherReposity;
     @Autowired
     Product_ServiceIml voucher_service;
+    // Hiển Thị
     @GetMapping("data")
     List<Voucher_Model> getAllVoucher(){
         return voucher_service.getAllVoucher();
 
     }
+    // Thêm
     @PostMapping("save")
     public ResponseEntity<Voucher_Model> save(@RequestBody Voucher_Model voucher){
         return  new ResponseEntity<Voucher_Model>(voucher_service.saveVoucher(voucher), HttpStatus.OK);
     }
-
+// Tìm kiếm
     @GetMapping("search/{keyword}")
     public ResponseEntity<List<Voucher_Model>> search(@PathVariable("keyword") String keyword){
         return new ResponseEntity<>(voucherReposity.findByCodeContaining(keyword), HttpStatus.OK);
 
     }
-
+// Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<Voucher_Model> edit(@PathVariable("id") Long id){
         Optional<Voucher_Model> item = voucher_service.findVoucherById(id);
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<Voucher_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Voucher_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<Voucher_Model> updateTutorial( @RequestBody Voucher_Model model) {
         return new ResponseEntity<Voucher_Model>( voucher_service.saveVoucher(model), HttpStatus.OK);
     }
     // Xóa

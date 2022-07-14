@@ -38,8 +38,8 @@ public ResponseEntity<Product_Model> save(@RequestBody Product_Model product){
         return ResponseEntity.of(item);
     }
     // Chỉnh sửa
-    @PutMapping("update/{id}")
-    public ResponseEntity<Product_Model> updateTutorial(@PathVariable("id") long id, @RequestBody Product_Model model) {
+    @PutMapping("update")
+    public ResponseEntity<Product_Model> updateTutorial( @RequestBody Product_Model model) {
         return new ResponseEntity<Product_Model>( productService.saveProduct(model), HttpStatus.OK);
     }
     // Xóa
@@ -62,24 +62,4 @@ public ResponseEntity<Product_Model> save(@RequestBody Product_Model product){
         return new ResponseEntity<>(productReposity.findByNameContaining(keyword), HttpStatus.OK);
 
     }
-
-// Xóa theo 2 key
-//@RequestMapping("search")
-//public ResponseEntity<List<Product_Model>> search(@RequestParam Map<Long,String> requestParam)
-//
-// throws Exception {
-//    Long id = Long.valueOf(requestParam.get("id"));
-//    String name=requestParam.get("name");
-//
-//
-//    System.out.println("id : " + id +
-//            "\n name :" + name
-//
-//    );
-//    // your code logic
-//    return new ResponseEntity<>( HttpStatus.OK);
-//}
-
-
-
 }
