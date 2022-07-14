@@ -226,70 +226,24 @@ productReposity.deleteById(id);
     public Optional<Country_Model> findCountryById(Long id) {
         return countryRepository.findById(id);
     }
-// City Service Imp
-
-    @Autowired
-    private  CityReposity cityReposity;
-    @Override
-    public List<City_Model> getAllCity() {
-        return cityReposity.findAll();
-    }
-
-    @Override
-    public City_Model saveCity(City_Model city) {
-        return cityReposity.save(city);
-    }
-
-    @Override
-    public void deleteCity(Long id) {
-        cityReposity.deleteById(id);
-    }
-
-    @Override
-    public Optional<City_Model> findCityById(Long id) {
-        return cityReposity.findById(id);
-    }
-// District Service Imp
-    @Autowired
-    private DistrictReposity districtReposity;
-    @Override
-    public List<District_Model> getAllDistrict() {
-        return districtReposity.findAll();
-    }
-
-    @Override
-    public District_Model saveDistrict(District_Model district) {
-        return districtReposity.save(district);
-    }
-
-    @Override
-    public void deleteDistrict(Long id) {
-        districtReposity.deleteById(id);
-    }
-
-    @Override
-    public Optional<District_Model> findDistrictById(Long id) {
-        return districtReposity.findById(id);
-    }
-
 
 
     //product color service imp
-//    @Autowired
+    @Autowired
 //    private Product_Color_Reposity product_repository;
 
-//    @Override
-//    public List<Product_Discount_Model> getAllProductDiscount() {
-//        return null;
-//    }
-//
-//    @Override
-//    public Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model) {
-//        return null;
-//    }
-//
-//    @Override
-//    public void deleteProductDiscount(Long product_id) {
-//
-//    }
+    @Override
+    public List<Product_Discount_Model> getAllProductDiscount() {
+        return null;
+    }
+
+    @Override
+    public Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model) {
+        return null;
+    }
+
+    @Override
+    public void deleteProductDiscount(Long product_id) {
+
+    }
 }
