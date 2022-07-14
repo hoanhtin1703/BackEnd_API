@@ -61,4 +61,19 @@ public interface Product_Service {
     void deleteComment(Long id);
     Optional<Comment_Model> findCommentById(Long id);
 
+
+    //  Country Service
+    List<Country_Model> getAllCountry();
+    Country_Model saveCountry(Country_Model country);
+    void deleteCountry(Long id);
+    Optional<Country_Model> findCountryById(Long id);
+
+
+    // Product Discount Service
+    List<Product_Discount_Model> getAllProductDiscount();
+
+    Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model);
+
+    void deleteProductDiscount(Long product_id);
+
 }

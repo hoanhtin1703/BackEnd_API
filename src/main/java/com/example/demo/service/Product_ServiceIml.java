@@ -201,4 +201,49 @@ productReposity.deleteById(id);
     public Optional<Comment_Model> findCommentById(Long id) {
         return commentRepository.findById(id);
     }
+
+
+    //Country service imp
+    @Autowired
+    private CountryReposity countryRepository;
+
+    @Override
+    public List<Country_Model> getAllCountry() {
+        return countryRepository.findAll();
+    }
+
+    @Override
+    public Country_Model saveCountry(Country_Model country) {
+        return countryRepository.save(country);
+    }
+
+    @Override
+    public void deleteCountry(Long id) {
+        countryRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Country_Model> findCountryById(Long id) {
+        return countryRepository.findById(id);
+    }
+
+
+    //product color service imp
+    @Autowired
+//    private Product_Color_Reposity product_repository;
+
+    @Override
+    public List<Product_Discount_Model> getAllProductDiscount() {
+        return null;
+    }
+
+    @Override
+    public Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model) {
+        return null;
+    }
+
+    @Override
+    public void deleteProductDiscount(Long product_id) {
+
+    }
 }
