@@ -25,7 +25,6 @@ public interface Product_Color_Reposity extends JpaRepository<Product_Color_Mode
     @Modifying
     @Transactional
     @Query(value="UPDATE product_color SET product_color.image_color =:image2 WHERE product_color.product_id =:id AND product_color.image_color =:image",nativeQuery = true)
-//    @Query(value="SELECT * FROM product_color p WHERE p.product_id =:id AND p.image_color =:image",nativeQuery = true)
     void updateProductColorModelByproductidAndimagecolor(@Param("id") Long product_id, @Param("image2") String image_color_update, @Param("image") String image_color);
 
 }

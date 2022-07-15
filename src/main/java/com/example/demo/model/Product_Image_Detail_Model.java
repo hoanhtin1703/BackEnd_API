@@ -1,12 +1,13 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @IdClass(Product_Image_Detail_Key.class)
-//@NamedQuery(name="product_image_detail.deleteProductColorDetail" , query="delete from product_image_detail.product_color where product_image_detail.image_color = ?1 and product_image_detail.image_detail = ?2")
+
 @Table(name = "product_image_detail")
-public class Product_Image_Detail_Model {
+public class Product_Image_Detail_Model implements Serializable {
     @Id
     @Column(name = "image_color")
     private String image_color;

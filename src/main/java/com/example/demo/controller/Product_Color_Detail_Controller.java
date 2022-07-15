@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.model.Product_Color_Model;
 import com.example.demo.model.Product_Image_Detail_Model;
 import com.example.demo.repo.Product_Image_Detail_Repo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +18,6 @@ public class Product_Color_Detail_Controller {
     @Autowired
     private Product_Image_Detail_Repo productImageDetailRepo;
 
-
     // Xóa theo 2 key
     @DeleteMapping("delete")
     public ResponseEntity<Product_Image_Detail_Model> delete(@RequestParam(name = "image_color") String img_color,@RequestParam(name = "image_detail") String img_detail) {
@@ -28,19 +25,18 @@ public class Product_Color_Detail_Controller {
         productImageDetailRepo.deleteProductColorModelByproductidAndimagecolor(img_color,img_detail);
         return  new ResponseEntity<>(HttpStatus.OK);
     }
+    // Tìm kiếm
     @GetMapping("search")
     public ResponseEntity<List<Product_Image_Detail_Model>> search(@RequestParam(name = "image_color") String image_color, @RequestParam(name = "image_detail") String image_detail){
         return  new ResponseEntity<>(productImageDetailRepo.searchProductColorDetailModelByproductidAndimagecolor(image_color,image_detail),HttpStatus.OK);
     }
-
+// UPDATE
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ResponseEntity<Object>update(@RequestBody Map<Object,String> image_detail_update){
         System.out.println(image_detail_update.get("image_detail_update"));
         String img_color_update = image_detail_update.get("image_detail_update");
-//        Long id = Long.parseLong(image_color_detail_update.get("image_color"));
         String img_color = image_detail_update.get("image_color");
         String img_detail = image_detail_update.get("image_detail");
-
 
         try{
             productImageDetailRepo.updateProductColorDeltailModelByImagedetailAndimagecolor(img_color,img_color_update,img_detail);
@@ -52,4 +48,8 @@ public class Product_Color_Detail_Controller {
             System.out.println(ex.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }}
+    }
+    /*
+** Viết hàm thêm
+     */
+}

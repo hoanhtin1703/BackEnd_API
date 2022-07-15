@@ -41,16 +41,13 @@ public class Product_Color_Controller {
         productColorReposity.deleteProductColorModelByproductidAndimagecolor(id, image_color);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    // Tìm Kiếm
     @GetMapping("search")
         public ResponseEntity<List<Product_Color_Model>> search(@RequestParam(name = "product_id") Long id, @RequestParam(name = "image_color") String image_color){
-//    product_Color_repository.searchProductColorModelByproductidAndimagecolor(id,image_color);
+
             return new ResponseEntity<>(productColorReposity.searchProductColorModelByproductidAndimagecolor(id, image_color), HttpStatus.OK);
         }
-//    // your code logic
-//    @PutMapping("update")
-//    public ResponseEntity<Product_Color_Model> updateTutorial(@RequestBody Product_Color_Model model) {
-//        return new ResponseEntity<Product_Color_Model>( product_Color_repository.save(model), HttpStatus.OK);
-//    }
+// Chỉnh sửa
 @RequestMapping(value = "update", method = RequestMethod.POST)
 public ResponseEntity<Object>update(@RequestBody Map<Object,String> image_color_update){
     System.out.println(image_color_update.get("image_color_update"));
@@ -68,7 +65,5 @@ public ResponseEntity<Object>update(@RequestBody Map<Object,String> image_color_
         System.out.println(ex.getMessage());
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
-//       return  new ResponseEntity<>(HttpStatus.OK);
-//      return new ResponseEntity<>(product_color_model,HttpStatus.OK);
 }
     }
