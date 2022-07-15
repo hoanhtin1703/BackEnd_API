@@ -66,5 +66,8 @@ public interface Product_Service {
     List<Product_Discount_Model> getAllProductDiscount();
     Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model);
     void deleteProductDiscount(Long product_id);
+    // product_color_detail
+    //save
+    Product_Image_Detail_Model addProductColorDetail(Product_Image_Detail_Model product_image_detail_model);
 
 }

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Product_Image_Detail_Model;
 import com.example.demo.repo.Product_Image_Detail_Repo;
+import com.example.demo.service.Product_ServiceIml;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class Product_Color_Detail_Controller {
     @Autowired
     private Product_Image_Detail_Repo productImageDetailRepo;
+    private Product_ServiceIml productServiceIml;
 
     // Xóa theo 2 key
     @DeleteMapping("delete")
@@ -52,4 +54,10 @@ public class Product_Color_Detail_Controller {
     /*
 ** Viết hàm thêm
      */
+    //save
+    @PostMapping("save")
+    public Product_Image_Detail_Model addProductColor(@RequestBody Product_Image_Detail_Model productImageDetailModel) {
+
+        return (Product_Image_Detail_Model) productServiceIml.addProductColorDetail(productImageDetailModel);
+    }
 }
