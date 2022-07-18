@@ -1,7 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.model.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,5 +72,8 @@ public interface Product_Service {
     // product_color_detail
     //save
     Product_Image_Detail_Model addProductColorDetail(Product_Image_Detail_Model product_image_detail_model);
+// Upload image Service
+    String UploadFile(String path, MultipartFile file) throws IOException;
+    InputStream GetImage(String path, String filename) throws IOException;
 
 }

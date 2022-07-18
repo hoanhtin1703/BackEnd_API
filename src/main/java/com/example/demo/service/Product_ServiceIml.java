@@ -5,7 +5,14 @@ import com.example.demo.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -238,5 +245,29 @@ public class Product_ServiceIml implements Product_Service {
         return  productImageDetailRepo.save(product_image_detail_model);
 
     }
+    // Upload image service imp
 
+// upload anh
+    @Override
+    public String UploadFile(String path, MultipartFile file) throws IOException {
+        // File name
+        String name = file.getOriginalFilename();
+        // Full path
+        String filepath= path+ File.separator+name;
+        // Create folder if not created
+        File f = new File(path);
+        if(!f.exists()){
+            f.mkdir();
+        }
+        // file copy
+        Files.copy(file.getInputStream(), Paths.get(filepath));
+        return name;
+    }
+    // Hien thi anh
+    @Override
+    public InputStream GetImage(String path, String filename) throws IOException {
+        String fullpath = path+File.separator+filename;
+        InputStream inputStream = new FileInputStream(fullpath);
+        return inputStream;
+    }
 }
