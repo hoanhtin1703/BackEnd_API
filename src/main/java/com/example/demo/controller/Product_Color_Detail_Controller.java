@@ -18,8 +18,9 @@ import java.util.Map;
 public class Product_Color_Detail_Controller {
     @Autowired
     private Product_Image_Detail_Repo productImageDetailRepo;
+    // Thêm @Autowired
+    @Autowired
     private Product_ServiceIml productServiceIml;
-
     // Xóa theo 2 key
     @DeleteMapping("delete")
     public ResponseEntity<Product_Image_Detail_Model> delete(@RequestParam(name = "image_color") String img_color,@RequestParam(name = "image_detail") String img_detail) {

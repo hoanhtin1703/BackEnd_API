@@ -32,7 +32,7 @@ public class FileController {
             e.printStackTrace();
             return new ResponseEntity<>(new FileRespone(null, "Submit successfully"), HttpStatus.OK);
         }
-        return  new ResponseEntity<>(new FileRespone(filename,"Submit successfully"), HttpStatus.OK);
+        return  new ResponseEntity<>(new FileRespone(filename,"Submit fail"), HttpStatus.OK);
     }
     // display image
     @RequestMapping(value = "/{image_name}", method = RequestMethod.GET)

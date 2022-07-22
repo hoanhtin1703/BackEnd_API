@@ -14,5 +14,6 @@ public class Product_Image_Detail_Key implements Serializable {
         this.image_color = image_color;
         this.image_detail = image_detail;
     }
+
 }
 
