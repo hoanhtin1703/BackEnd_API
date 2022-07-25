@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -63,4 +65,55 @@ public class User_Controller {
         }
 
     }
+
+    // Đăng nhập
+    @PostMapping("login")
+    public ResponseEntity<Object> login(@RequestBody Map<Object,String> user) throws Exception {
+        String email = user.get("email");
+        String password = user.get("password");
+        System.out.println(email+password);
+        try {
+            HashMap<String,Object> result = new HashMap<>();
+            result.put("data",userReposity.show(email,password));
+
+            if (!result.get("data").toString().equals("[]") ) {
+                result.put("status", 1);
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            }
+            else {
+                result.put("status", 0);
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+// Singup
+    @PostMapping("signup")
+    public ResponseEntity<Object> signup(@RequestBody User_Model user)  {
+      String email =  user.getEmail();
+        System.out.println(email);
+        try {
+
+            Boolean result = userReposity.existsByEmail(user.getEmail());
+                HashMap<String,Object> body = new HashMap<>();
+            System.out.println(userReposity.existsByEmail(email));
+            if (result) {
+                body.put("data",null);
+                body.put("status",0);
+                //        User_Model userModel = new User_Model();
+                return ResponseEntity.status(HttpStatus.OK).body(body);
+            }
+            else {
+                User_Model userModel = user_service.saveUser(user);
+                body.put("data",userModel);
+                body.put("status",1);
+                return ResponseEntity.status(HttpStatus.OK).body(body);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
 }

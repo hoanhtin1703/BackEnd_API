@@ -31,6 +31,7 @@ public class User_Model {
 
     @Column(name = "type")
     private int type;
+    // 0: User; 1: Employee; 2: Admin
 
     public User_Model(Long id, String name, String email, String password, String phone, String profile_image, int code, int type) {
         this.id = id;
