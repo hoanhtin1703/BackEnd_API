@@ -12,12 +12,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class Product_ServiceIml implements Product_Service {
+
+
     // Product Service Imp
     @Autowired
     private ProductReposity productReposity;
@@ -245,23 +248,49 @@ public class Product_ServiceIml implements Product_Service {
         return  productImageDetailRepo.save(product_image_detail_model);
 
     }
-    // Upload image service imp
 
-// upload anh
+
+    // Upload image service imp
+    // upload ảnh cũ
     @Override
-    public String UploadFile(String path, MultipartFile file) throws IOException {
-        // File name
+    public String UploadFile(String path, MultipartFile file)  {
+//        // File name
         String name = file.getOriginalFilename();
-        // Full path
-        String filepath= path+ File.separator+name;
-        // Create folder if not created
+//        // Create folder if not created
         File f = new File(path);
         if(!f.exists()){
             f.mkdir();
         }
-        // file copy
-        Files.copy(file.getInputStream(), Paths.get(filepath));
+        try {
+            // Full path
+            String filepath= path+ File.separator+name;
+            // file copy
+            Files.copy(file.getInputStream(), Paths.get(filepath));
+
+        } catch (Exception e) {
+            throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+        }
         return name;
+    }
+
+    // hàm upload mới
+    private final Path path = Paths.get("upload");
+
+    @Override
+    public void init() {
+        try {
+            Files.createDirectory(path);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not initialize folder for upload!");
+        }
+    }
+    @Override
+    public void UploadFile(MultipartFile file) {
+        try {
+            Files.copy(file.getInputStream(), this.path.resolve(file.getOriginalFilename()));
+        } catch (Exception e) {
+            throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+        }
     }
     // Hien thi anh
     @Override
