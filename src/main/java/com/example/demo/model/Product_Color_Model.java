@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "product_color")
 @IdClass(Product_Color_Id.class)
 public class Product_Color_Model implements Serializable {
-
+//
     @Id
     @Column(name = "product_id")
     private int product_id;

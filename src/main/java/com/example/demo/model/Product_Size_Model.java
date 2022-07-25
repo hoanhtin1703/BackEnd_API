@@ -58,7 +58,7 @@ public class Product_Size_Model {
     public int getSell() {
         return sell;
     }
-
+//
     public void setSell(int sell) {
         this.sell = sell;
     }

@@ -3,7 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 
 public class Product_Size_Key implements Serializable {
-    private String image_color;
+    private String image_color;//
     private int size_id;
 
     public Product_Size_Key() {

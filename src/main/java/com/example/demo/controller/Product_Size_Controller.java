@@ -73,7 +73,7 @@ public class Product_Size_Controller {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//
     // update sell
     @RequestMapping(value = "updatesell", method = RequestMethod.POST)
     public ResponseEntity<Object> updatesell(@RequestBody Map<Object, String> sell) {

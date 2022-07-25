@@ -17,7 +17,7 @@ public interface Product_Size_Repository extends JpaRepository<Product_Size_Mode
     List<Product_Size_Model> searchProductSizeModelByImageColorAndSizeId(@Param("image") String image_color, @Param("id") int size_id);
 
     @Modifying
-    @Transactional
+    @Transactional//
     @Query(value="DELETE FROM product_size p WHERE p.image_color =:image AND p.size_id =:id",nativeQuery = true)
     void deleteProductSizeModelByImageColorAndSizeId(@Param("image") String image_color, @Param("id") int size_id);
 

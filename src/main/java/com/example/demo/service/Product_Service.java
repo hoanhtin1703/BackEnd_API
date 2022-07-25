@@ -74,7 +74,7 @@ public interface Product_Service {
     Product_Image_Detail_Model addProductColorDetail(Product_Image_Detail_Model product_image_detail_model);
 // Upload image Service
     String UploadFile(String path, MultipartFile file) ; // Hàm upload cũ
-public void init(); // Hàm khởi tạo
+public void init(); // Hàm khởi tạo//
     public void UploadFile( MultipartFile file) ; // Hàm mới
     InputStream GetImage(String path, String filename) throws IOException;
     // Product_Size Service

@@ -299,7 +299,7 @@ public class Product_ServiceIml implements Product_Service {
         InputStream inputStream = new FileInputStream(fullpath);
         return inputStream;
     }
-    // Product_size Service
+    // Product_size Service//
     @Autowired
     private Product_Size_Repository productSizeReponsitory;
     @Override
