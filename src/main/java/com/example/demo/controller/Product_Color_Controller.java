@@ -54,7 +54,6 @@ public ResponseEntity<Object>update(@RequestBody Map<Object,String> image_color_
     String img_color_update = image_color_update.get("image_color_update");
     Long id = Long.parseLong(image_color_update.get("product_id"));
     String img_color = image_color_update.get("image_color");
-
     try{
         productColorReposity.updateProductColorModelByproductidAndimagecolor(id,img_color_update,img_color);
         HashMap<String, Object> reuslt = new HashMap<>();

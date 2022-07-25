@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.User_Model;
 import com.example.demo.repo.UserReposity;
 import com.example.demo.service.Product_ServiceIml;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,7 +66,25 @@ public class User_Controller {
         }
 
     }
-
+//// Mã hóa Md5 Password
+//private static byte[] digest(byte[] input) {
+//    MessageDigest md;
+//    try {
+//        md = MessageDigest.getInstance("MD5");
+//    } catch (NoSuchAlgorithmException e) {
+//        throw new IllegalArgumentException(e);
+//    }
+//    byte[] result = md.digest(input);
+//    return result;
+//}
+//
+//    private static String bytesToHex(byte[] bytes) {
+//        StringBuilder sb = new StringBuilder();
+//        for (byte b : bytes) {
+//            sb.append(String.format("%02x", b));
+//        }
+//        return sb.toString();
+//    }
     // Đăng nhập
     @PostMapping("login")
     public ResponseEntity<Object> login(@RequestBody Map<Object,String> user) throws Exception {
@@ -88,13 +107,22 @@ public class User_Controller {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    //
+//    @PostMapping("demo")
+//    public String test(@RequestBody String password){
+//        String pText = "Hello MD5";
+//        System.out.println(String.format(OUTPUT_FORMAT, "Input (string)", pText));
+//        byte[] md5InBytes = User_Controller.digest(pText.getBytes(UTF_8));
+//        System.out.println(String.format(OUTPUT_FORMAT, "MD5 (hex) ", bytesToHex(md5InBytes)));
+//        return String.format(OUTPUT_FORMAT, "MD5 (hex) ", bytesToHex(md5InBytes));
+//    }
 // Singup
     @PostMapping("signup")
     public ResponseEntity<Object> signup(@RequestBody User_Model user)  {
+
       String email =  user.getEmail();
         System.out.println(email);
         try {
-
             Boolean result = userReposity.existsByEmail(user.getEmail());
                 HashMap<String,Object> body = new HashMap<>();
             System.out.println(userReposity.existsByEmail(email));
@@ -105,6 +133,8 @@ public class User_Controller {
                 return ResponseEntity.status(HttpStatus.OK).body(body);
             }
             else {
+
+                user.setPassword(DigestUtils.md5Hex(user.getPassword()));
                 User_Model userModel = user_service.saveUser(user);
                 body.put("data",userModel);
                 body.put("status",1);

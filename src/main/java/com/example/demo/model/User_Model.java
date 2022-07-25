@@ -6,33 +6,26 @@ import javax.persistence.*;
 @Table(name = "user")
 
 public class User_Model {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-
     @Column(name = "name")
     private String name;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "password")
     private String password;
-
     @Column(name = "phone")
     private String phone;
-
     @Column(name = "profile_image")
     private String profile_image;
-
     @Column(name = "code")
     private int code;
 
     @Column(name = "type")
     private int type;
-    // 0: User; 1: Employee; 2: Admin
-
     public User_Model(Long id, String name, String email, String password, String phone, String profile_image, int code, int type) {
         this.id = id;
         this.name = name;

@@ -243,13 +243,13 @@ public class Product_ServiceIml implements Product_Service {
     }
 
     //Product_color_detail
+    @Autowired
     private Product_Image_Detail_Repo productImageDetailRepo;
     @Override
     public Product_Image_Detail_Model addProductColorDetail(Product_Image_Detail_Model product_image_detail_model) {
         return  productImageDetailRepo.save(product_image_detail_model);
 
     }
-
 
     // Upload image service imp
     // upload ảnh cũ
