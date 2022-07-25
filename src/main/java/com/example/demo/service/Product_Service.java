@@ -77,5 +77,10 @@ public interface Product_Service {
 public void init(); // Hàm khởi tạo
     public void UploadFile( MultipartFile file) ; // Hàm mới
     InputStream GetImage(String path, String filename) throws IOException;
+    // Product_Size Service
+    List<Product_Size_Model> getAllProductSizeModel();
+    Product_Size_Model addProductSizeModel(Product_Size_Model productSizeModel);
+    Product_Size_Model saveProductSize(Product_Size_Model productSizeModel);
+
 
 }

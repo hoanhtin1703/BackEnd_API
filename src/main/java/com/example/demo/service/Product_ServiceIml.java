@@ -299,4 +299,21 @@ public class Product_ServiceIml implements Product_Service {
         InputStream inputStream = new FileInputStream(fullpath);
         return inputStream;
     }
+    // Product_size Service
+    @Autowired
+    private Product_Size_Repository productSizeReponsitory;
+    @Override
+    public List<Product_Size_Model> getAllProductSizeModel() {
+        return (List<Product_Size_Model>) productSizeReponsitory.findAll();
+    }
+
+    @Override
+    public Product_Size_Model addProductSizeModel(Product_Size_Model productSizeModel) {
+        return (Product_Size_Model) productSizeReponsitory.save(productSizeModel);
+    }
+
+    @Override
+    public Product_Size_Model saveProductSize(Product_Size_Model productSizeModel) {
+        return productSizeReponsitory.save(productSizeModel);
+    }
 }
