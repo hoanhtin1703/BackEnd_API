@@ -203,7 +203,7 @@ public class User_Controller {
 
 
     @GetMapping("/reset_password")
-    public String showResetPasswordForm(@Param(value = "token") String email, @Param(value = "token") String token) {
+    public ResponseEntity<Object> showResetPasswordForm(@Param(value = "token") String email, @Param(value = "token") String token) {
 //        System.out.println("Reset Password");
 //        System.out.println(email);
 //        System.out.println(token);
