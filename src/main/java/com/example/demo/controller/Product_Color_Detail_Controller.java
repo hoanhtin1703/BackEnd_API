@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.model.Product_Color_Model;
 import com.example.demo.model.Product_Image_Detail_Model;
 import com.example.demo.repo.Product_Image_Detail_Repo;
 import com.example.demo.service.Product_ServiceIml;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin
 @RestController
 @RequestMapping("product/colorDetail/")
 public class Product_Color_Detail_Controller {
@@ -60,5 +61,9 @@ public class Product_Color_Detail_Controller {
     public Product_Image_Detail_Model addProductColor(@RequestBody Product_Image_Detail_Model productImageDetailModel) {
 
         return (Product_Image_Detail_Model) productServiceIml.addProductColorDetail(productImageDetailModel);
+    }
+    @GetMapping("data")
+    public List<Product_Image_Detail_Model> getAllProductColor() {
+        return productServiceIml.getAllProductColorDetail();
     }
 }

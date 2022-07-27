@@ -78,7 +78,6 @@ public class Product_ServiceIml implements Product_Service {
     public Optional<User_Model> findUserById(Long id) {
         return userReposity.findById(id);
     }
-
     //Contact Service Imp
     @Autowired
     ContactReposity contactReposity;
@@ -241,16 +240,18 @@ public class Product_ServiceIml implements Product_Service {
     @Override
     public void deleteProductDiscount(Long product_id) {
     }
-
-    //Product_color_detail
     @Autowired
+    //Product_color_detail
     private Product_Image_Detail_Repo productImageDetailRepo;
     @Override
     public Product_Image_Detail_Model addProductColorDetail(Product_Image_Detail_Model product_image_detail_model) {
         return  productImageDetailRepo.save(product_image_detail_model);
 
     }
-
+    @Override
+    public List<Product_Image_Detail_Model> getAllProductColorDetail() {
+        return productImageDetailRepo.findAll();
+    }
     // Upload image service imp
     // upload ảnh cũ
     @Override
@@ -300,7 +301,7 @@ public class Product_ServiceIml implements Product_Service {
         InputStream inputStream = new FileInputStream(fullpath);
         return inputStream;
     }
-    // Product_size Service//
+    //
     @Autowired
     private Product_Size_Repository productSizeReponsitory;
     @Override
@@ -317,5 +318,7 @@ public class Product_ServiceIml implements Product_Service {
     public Product_Size_Model saveProductSize(Product_Size_Model productSizeModel) {
         return productSizeReponsitory.save(productSizeModel);
     }
+    //
+
 
 }

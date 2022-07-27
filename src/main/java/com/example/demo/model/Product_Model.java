@@ -17,7 +17,7 @@ private  Long id;
     @Column(name ="name")
     private String name;
     @Column(name ="purchase_price")
-private int purchase_price;
+    private int purchase_price;
     @Column(name ="description")
     private String  description;
     @Column(name ="brand_id")
@@ -29,9 +29,9 @@ private int purchase_price;
     @Column(name ="price")
     private int price;
     @Column(name ="created_at")
-    private Date created_at;
+    private String created_at;
     @Column(name ="updated_at")
-    private Date updated_at;
+    private String updated_at;
 
 
     public int getPurchase_price() {
@@ -82,19 +82,19 @@ private int purchase_price;
         this.price = price;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdated_at() {
+    public String getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Date updated_at) {
+    public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
     public Long getId() {
@@ -126,7 +126,7 @@ private int purchase_price;
 //        this.name = name;
 //    }
 
-    public Product_Model(Long id, String name, int purchase_price, String description, int brand_id, int status, int staff_id, int price, Date created_at, Date updated_at) {
+    public Product_Model(Long id, String name, int purchase_price, String description, int brand_id, int status, int staff_id, int price, String created_at, String updated_at) {
         this.id = id;
         this.name = name;
         this.purchase_price = purchase_price;
@@ -153,8 +153,8 @@ private int purchase_price;
                 ", status=" + status +
                 ", staff_id=" + staff_id +
                 ", price=" + price +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", created_at=" + created_at + '\'' +
+                ", updated_at=" + updated_at + '\'' +
                 '}';
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.Product_Color_Detail_Controller;
 import com.example.demo.model.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -70,17 +71,19 @@ public interface Product_Service {
     Product_Discount_Model addProductDiscount(Product_Discount_Model product_discount_model);
     void deleteProductDiscount(Long product_id);
     // product_color_detail
+    List<Product_Image_Detail_Model> getAllProductColorDetail();
     //save
     Product_Image_Detail_Model addProductColorDetail(Product_Image_Detail_Model product_image_detail_model);
 // Upload image Service
     String UploadFile(String path, MultipartFile file) ; // Hàm upload cũ
-public void init(); // Hàm khởi tạo//
+public void init(); // Hàm khởi tạo
     public void UploadFile( MultipartFile file) ; // Hàm mới
     InputStream GetImage(String path, String filename) throws IOException;
-    // Product_Size Service
+    // Service size
     List<Product_Size_Model> getAllProductSizeModel();
     Product_Size_Model addProductSizeModel(Product_Size_Model productSizeModel);
     Product_Size_Model saveProductSize(Product_Size_Model productSizeModel);
+
 
 
 }
