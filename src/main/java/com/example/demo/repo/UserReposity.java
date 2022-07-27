@@ -16,4 +16,12 @@ public interface UserReposity extends JpaRepository<User_Model, Long> {
     @Transactional
     @Query(value = "SELECT * FROM user u WHERE u.email = :email AND u.password = md5(:password)", nativeQuery=true)
     List<User_Model> show(@Param("email") String email, @Param("password") String password);
+
+    @Query("SELECT u FROM User_Model u WHERE u.email = ?1")
+    User_Model findByEmail(String email);
+
+    @Modifying
+    @Transactional
+    @Query(value = "SELECT * FROM user u WHERE u.email = :email AND u.code = :code", nativeQuery=true)
+    List<User_Model> findByEmailAndCode(@Param("email") String email, @Param("code") String code);
 }

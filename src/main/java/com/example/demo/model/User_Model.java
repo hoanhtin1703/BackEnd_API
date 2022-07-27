@@ -22,11 +22,11 @@ public class User_Model {
     @Column(name = "profile_image")
     private String profile_image;
     @Column(name = "code")
-    private int code;
+    private String code;
 
     @Column(name = "type")
     private int type;
-    public User_Model(Long id, String name, String email, String password, String phone, String profile_image, int code, int type) {
+    public User_Model(Long id, String name, String email, String password, String phone, String profile_image, String code, int type) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -89,11 +89,11 @@ public class User_Model {
         this.profile_image = profile_image;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

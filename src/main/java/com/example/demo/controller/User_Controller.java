@@ -2,17 +2,28 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User_Model;
 import com.example.demo.repo.UserReposity;
+import com.example.demo.service.Mail_Service;
 import com.example.demo.service.Product_ServiceIml;
+import net.bytebuddy.utility.RandomString;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+//import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -24,6 +35,10 @@ public class User_Controller {
     private UserReposity userReposity;
     @Autowired
     Product_ServiceIml user_service;
+
+    @Autowired
+    Mail_Service mail_service;
+
     // Hiển Thị
     @GetMapping("data")
     List<User_Model> getAllUser(){
@@ -90,7 +105,7 @@ public class User_Controller {
     public ResponseEntity<Object> login(@RequestBody Map<Object,String> user) throws Exception {
         String email = user.get("email");
         String password = user.get("password");
-        System.out.println(email+password);
+//        System.out.println(email+password);
         try {
             HashMap<String,Object> result = new HashMap<>();
             result.put("data",userReposity.show(email,password));
@@ -121,7 +136,7 @@ public class User_Controller {
     public ResponseEntity<Object> signup(@RequestBody User_Model user)  {
 
       String email =  user.getEmail();
-        System.out.println(email);
+//        System.out.println(email);
         try {
             Boolean result = userReposity.existsByEmail(user.getEmail());
                 HashMap<String,Object> body = new HashMap<>();
@@ -145,5 +160,97 @@ public class User_Controller {
         }
 
     }
+
+
+
+//    @GetMapping("/forgot_password")
+//    public String showForgotPasswordForm() {
+//        return null;
+//    }
+
+    @PostMapping("/forgot_password")
+    public ResponseEntity<Object> processForgotPassword(HttpServletRequest request) throws Exception {
+        String email = request.getParameter("email");
+        System.out.println(request.getLocalAddr());
+        System.out.println(request.getLocalName());
+        System.out.println(email);
+        try {
+            User_Model user = userReposity.findByEmail(email);
+            HashMap<String,Object> body = new HashMap<>();
+            HashMap<String,Object> data = new HashMap<>();
+            data.put("email", email);
+            if (user != null) {
+                String token = RandomString.make(30);
+                user_service.updateResetPasswordToken(user, token);
+                String resetPasswordLink = user_service.getSiteURL(request) + "/user/reset_password?email=" + email + "&token=" + token;
+                mail_service.sendEmail(email, resetPasswordLink);
+                data.put("token", token);
+                body.put("data", data);
+                body.put("status", 1);
+            } else {
+                body.put("data", data);
+                body.put("status", 0);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(body);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+
+    }
+
+
+    @GetMapping("/reset_password")
+    public String showResetPasswordForm(@Param(value = "token") String email, @Param(value = "token") String token) {
+//        System.out.println("Reset Password");
+//        System.out.println(email);
+//        System.out.println(token);
+        return null;
+
+    }
+
+    @PostMapping("/reset_password")
+    public ResponseEntity<Object> processResetPassword(HttpServletRequest request) {
+        String email = request.getParameter("email");
+        String token = request.getParameter("token");
+        String password = request.getParameter("password");
+
+//        System.out.println(email);
+//        System.out.println(token);
+//        System.out.println(password);
+
+        User_Model user = user_service.getByEmailAndResetPasswordToken(email, token);
+        HashMap<String,Object> body = new HashMap<>();
+        HashMap<String,Object> data = new HashMap<>();
+        try {
+            if (user == null) {
+
+                data.put("token", token);
+
+                body.put("data", data);
+                body.put("status", 0);
+            } else {
+
+                user_service.updatePassword(user, password);
+
+                data.put("email", email);
+                data.put("password", user.getPassword());
+                body.put("data", data);
+
+                body.put("status", 1);
+
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(body);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+
+    }
+
+
 
 }

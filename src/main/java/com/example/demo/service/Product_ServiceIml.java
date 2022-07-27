@@ -2,11 +2,13 @@ package com.example.demo.service;
 
 import com.example.demo.model.*;
 import com.example.demo.repo.*;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -320,5 +322,30 @@ public class Product_ServiceIml implements Product_Service {
     }
     //
 
+
+
+    // Bonus User service impl
+
+    public void updateResetPasswordToken(User_Model user, String token) throws Exception {
+            user.setCode(token);
+            userReposity.save(user);
+    }
+
+    public User_Model getByEmailAndResetPasswordToken(String email, String token) {
+        List<User_Model> user = userReposity.findByEmailAndCode(email, token);
+        return (!user.isEmpty() ? user.get(0) : null);
+    }
+
+    public void updatePassword(User_Model user, String newPassword) {
+        user.setPassword(DigestUtils.md5Hex(newPassword));
+
+        user.setCode(null);
+        userReposity.save(user);
+    }
+
+    public String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }
 
 }
