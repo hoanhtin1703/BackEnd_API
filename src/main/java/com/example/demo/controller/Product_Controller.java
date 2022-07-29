@@ -26,11 +26,9 @@ public class Product_Controller {
     }
 //Thêm
 @PostMapping("save")
-public ResponseEntity<Product_Model> save(@RequestBody Product_Model product){
-    return  new ResponseEntity<Product_Model>(productService.saveProduct(product),HttpStatus.OK);
-
+public ResponseEntity<Product_Model> save(@RequestBody Product_Model product) {
+    return new ResponseEntity<Product_Model>(productReposity.save(product), HttpStatus.OK);
 }
-
     // Tìm kiếm theo id
     @GetMapping("edit/{id}")
     public ResponseEntity<Product_Model> edit(@PathVariable("id") Long id){

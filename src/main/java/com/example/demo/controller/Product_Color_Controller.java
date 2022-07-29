@@ -20,20 +20,27 @@ public class Product_Color_Controller {
     private Product_ServiceIml productService;
     @Autowired
     private Product_Color_Reposity productColorReposity;
-
     // Hiển Thị
     @GetMapping("data")
-    public List<Product_Color_Model> getAllProductColor() {
-        return productService.getAllProductColor();
+    public ResponseEntity<List<Product_Color_Model>> getAllProductColor() {
+        return new ResponseEntity<>( productService.getAllProductColor(),HttpStatus.OK);
     }
-
     // Thêm
     @PostMapping("save")
-    public Product_Color_Model addProductColor(@RequestBody Product_Color_Model product_color_model) {
-
-        return (Product_Color_Model) productService.addProductColor(product_color_model);
+    public ResponseEntity<Object> addProductColor(@RequestBody Product_Color_Model product_color_model) {
+        int product_id = product_color_model.getProduct_id();
+        String img_color = product_color_model.getImage_color();
+        try{
+            productService.addProductColor(product_color_model);
+            HashMap<String, Object> reuslt = new HashMap<>();
+            reuslt.put("product_id", product_id);
+            reuslt.put("image_color", img_color);
+            return ResponseEntity.status(HttpStatus.OK).body(reuslt);
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-
     // Xóa
     @DeleteMapping("delete")
     public ResponseEntity<Product_Color_Model> delete(@RequestParam(name = "product_id") Long id, @RequestParam(name = "image_color") String image_color) {
@@ -65,4 +72,10 @@ public ResponseEntity<Object>update(@RequestBody Map<Object,String> image_color_
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
+//Inner Join
+    @GetMapping("show")
+    public ResponseEntity<List<Product_Color_Model>> showinnerjoin(){
+
+        return new ResponseEntity<>(productColorReposity.findAllProductColor(), HttpStatus.OK);
+    }
     }

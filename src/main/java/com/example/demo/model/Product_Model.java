@@ -1,15 +1,15 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 //@Getter
 //@Setter
-
 @Entity
-
 @Table(name = "product")
-public class Product_Model {
+public class Product_Model implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="product_id")
@@ -17,7 +17,7 @@ private  Long id;
     @Column(name ="name")
     private String name;
     @Column(name ="purchase_price")
-    private int purchase_price;
+private int purchase_price;
     @Column(name ="description")
     private String  description;
     @Column(name ="brand_id")
@@ -29,10 +29,17 @@ private  Long id;
     @Column(name ="price")
     private int price;
     @Column(name ="created_at")
-    private String created_at;
+    private Date created_at;
     @Column(name ="updated_at")
-    private String updated_at;
+    private Date updated_at;
+    // Join Colum
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="product_modelSet")
+    private List<Product_Color_Model> product_color_models;
 
+
+    public void setProduct_color_models(List<Product_Color_Model> product_color_models) {
+        this.product_color_models = product_color_models;
+    }
 
     public int getPurchase_price() {
         return purchase_price;
@@ -82,19 +89,19 @@ private  Long id;
         this.price = price;
     }
 
-    public String getCreated_at() {
+    public Date getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
 
-    public String getUpdated_at() {
+    public Date getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
     public Long getId() {
@@ -113,20 +120,7 @@ private  Long id;
         this.name = name;
     }
 
-//    public Product_Model(Long id, int purchase_price, String description, int brand_id, int status, int staff_id, int price, Date created_at, Date updated_at, String name) {
-//        this.id = id;
-//        this.purchase_price = purchase_price;
-//        this.description = description;
-//        this.brand_id = brand_id;
-//        this.status = status;
-//        this.staff_id = staff_id;
-//        this.price = price;
-//        this.created_at = created_at;
-//        this.updated_at = updated_at;
-//        this.name = name;
-//    }
-
-    public Product_Model(Long id, String name, int purchase_price, String description, int brand_id, int status, int staff_id, int price, String created_at, String updated_at) {
+    public Product_Model(Long id, String name, int purchase_price, String description, int brand_id, int status, int staff_id, int price, Date created_at, Date updated_at) {
         this.id = id;
         this.name = name;
         this.purchase_price = purchase_price;
@@ -153,18 +147,8 @@ private  Long id;
                 ", status=" + status +
                 ", staff_id=" + staff_id +
                 ", price=" + price +
-                ", created_at=" + created_at + '\'' +
-                ", updated_at=" + updated_at + '\'' +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
                 '}';
     }
-
-    //    @Override
-//    public String toString() {
-//        return "Employee{" +
-//                "id=" + id +
-//                ", firstName='" + name +
-////                ", lastName='" + lastName + '\'' +
-////                ", description='" + description + '\'' +
-//                '}';
-//    }
 }

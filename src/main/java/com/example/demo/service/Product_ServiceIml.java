@@ -106,9 +106,23 @@ public class Product_ServiceIml implements Product_Service {
     public List<Product_Color_Model> getAllProductColor() {
         return product_repository.findAll();
     }
+
+//    private List<ProductColorDto> toDtos(List<Product_Color_Model> all) {
+//        List<ProductColorDto> dto = new ArrayList<ProductColorDto>();
+//
+//        all.stream().map( product -> dto.add(toDto(product))).collect(Collectors.toList());
+//
+//        return dto;
+//    }
+//
+//    private ProductColorDto toDto(Product_Color_Model product) {
+//        ProductColorDto productColor = new ProductColorDto(product.getProduct_id(),product.getImage_color(),product.getImage_color());
+//        return productColor;
+//    }
+
     @Override
-    public Product_Color_Model addProductColor(Product_Color_Model product_color_model) {
-        return (Product_Color_Model) product_repository.save(product_color_model);
+    public void addProductColor(Product_Color_Model product_color_model) {
+        product_repository.save(product_color_model);
     }
     @Override
     public void deleteProductColor(Long product_id) {

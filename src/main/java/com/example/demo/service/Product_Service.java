@@ -34,7 +34,7 @@ public interface Product_Service {
     Optional<Contact_Model> findContactById(Long id);
     // Product Color Service
     List<Product_Color_Model> getAllProductColor();
-    Product_Color_Model addProductColor(Product_Color_Model product_color_model);
+    void addProductColor(Product_Color_Model product_color_model);
     void deleteProductColor(Long product_id);
     // Voucher Model Service
     List<Voucher_Model> getAllVoucher();
