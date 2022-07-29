@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -48,6 +49,12 @@ public class Oder_Controller {
     @PutMapping("update")
     public ResponseEntity<Oder_Model> updateOder( @RequestBody Oder_Model oderModel) {
         return new ResponseEntity<Oder_Model>( productServiceIml.addOder(oderModel), HttpStatus.OK);
+    }
+    // edit order
+    @GetMapping("edit/{id}")
+    public ResponseEntity<Oder_Model> edit(@PathVariable("id") Long id){
+        Optional<Oder_Model> item = productServiceIml.findOderById(id);
+        return ResponseEntity.of(item);
     }
 
 }
