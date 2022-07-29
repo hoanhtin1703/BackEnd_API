@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="order")
+@Table(name="`order`")
 public class Oder_Model {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    @Column(name = "date")
+    @Column(name = "`date`")
     private Date date;
     @Column(name = "sender_name")
     private String sender_name;
@@ -25,10 +25,10 @@ public class Oder_Model {
     @Column(name = "address")
     private String address;
     @Column(name = "total")
-    private Long total;
+    private long total;
     @Column(name = "user_id")
-    private int user_id;
-    @Column(name = "status")
+    private Long user_id;
+    @Column(name = "`status`")
     private int status;
     public Long getId() {
         return id;
@@ -94,19 +94,19 @@ public class Oder_Model {
         this.address = address;
     }
 
-    public Long getTotal() {
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(Long total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 
@@ -137,7 +137,7 @@ public class Oder_Model {
 
 
 
-    public Oder_Model(Long id, Date date, String sender_name, String sender_phone, String country, String city, String district, String address, Long total, int user_id, int status) {
+    public Oder_Model(Long id, Date date, String sender_name, String sender_phone, String country, String city, String district, String address, long total, Long user_id, int status) {
         this.id = id;
         this.date = date;
         this.sender_name = sender_name;

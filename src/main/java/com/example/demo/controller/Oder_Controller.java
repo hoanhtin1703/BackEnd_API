@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("oder/")
+@RequestMapping("order/")
 public class Oder_Controller {
     @Autowired
     private Product_ServiceIml productServiceIml;

@@ -1,11 +1,10 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name="order_detail")
-public class Oder_Detail_Model implements Serializable {
+public class Oder_Detail_Model {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

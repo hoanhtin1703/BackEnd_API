@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Oder_Detail_Model;
-import com.example.demo.model.Oder_Detail_Model;
 import com.example.demo.repo.Oder_Detail_Reposity;
 import com.example.demo.service.Product_ServiceIml;
 import org.springframework.beans.factory.annotation.Autowired;
