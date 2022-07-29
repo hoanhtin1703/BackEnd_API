@@ -7,21 +7,11 @@ import com.example.demo.service.Product_ServiceIml;
 import net.bytebuddy.utility.RandomString;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-//import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -69,15 +59,15 @@ public class User_Controller {
     }
     // Xóa
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<User_Model> deleteUser(@PathVariable("id") long id){
+    public ResponseEntity<String> deleteUser(@PathVariable("id") long id){
         try {
 
             user_service.deleteUser(id);
-            return new ResponseEntity<User_Model>(HttpStatus.OK);
+            return new ResponseEntity<String>("Xoá thành công!!", HttpStatus.OK);
         }
         catch (Exception e) {
             // TODO: handle exception
-            return new ResponseEntity<User_Model>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Xoá không thành công!!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

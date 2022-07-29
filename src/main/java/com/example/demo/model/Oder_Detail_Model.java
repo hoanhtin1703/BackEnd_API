@@ -1,10 +1,11 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name="oder_detail")
-public class Oder_Detail_Model {
+@Table(name="order_detail")
+public class Oder_Detail_Model implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -14,11 +15,12 @@ public class Oder_Detail_Model {
     @Column(name = "product_size")
     private int product_size;
     @Column(name = "product_name")
-    private String product_name;
+    private String productName;
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "order_id")
-    private int order_id;
+    private Long order_id;
+
     public Long getId() {
         return id;
     }
@@ -44,11 +46,11 @@ public class Oder_Detail_Model {
     }
 
     public String getProduct_name() {
-        return product_name;
+        return productName;
     }
 
     public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+        this.productName = product_name;
     }
 
     public int getQuantity() {
@@ -59,19 +61,19 @@ public class Oder_Detail_Model {
         this.quantity = quantity;
     }
 
-    public int getOrder_id() {
+    public Long getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(int order_id) {
+    public void setOrder_id(Long order_id) {
         this.order_id = order_id;
     }
 
-    public Oder_Detail_Model(Long id, String product_image, int product_size, String product_name, int quantity, int order_id) {
+    public Oder_Detail_Model(Long id, String product_image, int product_size, String product_name, int quantity, Long order_id) {
         this.id = id;
         this.product_image = product_image;
         this.product_size = product_size;
-        this.product_name = product_name;
+        this.productName = product_name;
         this.quantity = quantity;
         this.order_id = order_id;
     }
@@ -85,7 +87,7 @@ public class Oder_Detail_Model {
                 "id=" + id +
                 ", product_image='" + product_image + '\'' +
                 ", product_size=" + product_size +
-                ", product_name='" + product_name + '\'' +
+                ", product_name='" + productName + '\'' +
                 ", quantity=" + quantity +
                 ", order_id=" + order_id +
                 '}';

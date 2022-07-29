@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Product_Discount_Reposity extends JpaRepository<Product_Discount_Model, Long> {
-    @Query(value ="SELECT pd FROM Product_Discount_Model pd WHERE pd.discount LIKE   '%:?1%'  " )
+    @org.springframework.data.jdbc.repository.query.Query(value ="SELECT pd FROM Product_Discount_Model pd WHERE pd.discount LIKE   '%:?1%'  " )
     List<Product_Discount_Model> findByDiscountContaining(String keyword);
 
     @Modifying

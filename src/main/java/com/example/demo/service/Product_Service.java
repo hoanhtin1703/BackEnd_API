@@ -85,5 +85,12 @@ public void init(); // Hàm khởi tạo
     Product_Size_Model saveProductSize(Product_Size_Model productSizeModel);
 
 
+    // Order Detail Service
+    List<Oder_Detail_Model> getAllOrderDetail();
+    Oder_Detail_Model saveOrderDetail(Oder_Detail_Model order_detail);
+    void deleteOrderDetail(Long id);
+    Optional<Oder_Detail_Model> findOrderDetailById(Long id);
+
+
 
 }
