@@ -337,6 +337,34 @@ public class Product_ServiceIml implements Product_Service {
 
 
 
+    // Order Detail Service Imp
+
+    @Autowired
+    private Oder_Detail_Reposity orderDetailRepository;
+
+    @Override
+    public List<Oder_Detail_Model> getAllOrderDetail() {
+        return (List<Oder_Detail_Model>) orderDetailRepository.findAll();
+    }
+
+    @Override
+    public Oder_Detail_Model saveOrderDetail(Oder_Detail_Model order_detail) {
+        return (Oder_Detail_Model) orderDetailRepository.save(order_detail);
+    }
+
+    @Override
+    public void deleteOrderDetail(Long id) {
+        orderDetailRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Oder_Detail_Model> findOrderDetailById(Long id) {
+        return orderDetailRepository.findById(id);
+    }
+    //
+
+
+
     // Bonus User service impl
 
     public void updateResetPasswordToken(User_Model user, String token) throws Exception {

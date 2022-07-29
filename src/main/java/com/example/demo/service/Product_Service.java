@@ -2,8 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.controller.Product_Color_Detail_Controller;
 import com.example.demo.model.*;
-import com.example.demo.repo.OderReposity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -92,5 +90,12 @@ public void init(); // Hàm khởi tạo
     Oder_Model addOder(Oder_Model oderModel);
     void deleteOder(Long id);
     Optional<Oder_Model> findOderById(Long id);
+    // Order Detail Service
+    List<Oder_Detail_Model> getAllOrderDetail();
+    Oder_Detail_Model saveOrderDetail(Oder_Detail_Model order_detail);
+    void deleteOrderDetail(Long id);
+    Optional<Oder_Detail_Model> findOrderDetailById(Long id);
+
+
 
 }

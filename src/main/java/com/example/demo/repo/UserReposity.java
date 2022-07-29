@@ -10,8 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 public interface UserReposity extends JpaRepository<User_Model, Long> {
     Boolean existsByEmail(String email);
-    @Query(value ="SELECT u FROM User_Model u WHERE u.name LIKE   '%:?1%'  " )
+
+//    @org.springframework.data.jdbc.repository.query.Query("SELECT u FROM User_Model u WHERE u.name LIKE   '%:?1%'  ")
+//    List<User_Model> findByNameContaining(String keyword);
+
+    @Modifying
+    @Transactional
+    @Query(value = "SELECT * FROM user u WHERE u.name LIKE %?1%", nativeQuery = true)
     List<User_Model> findByNameContaining(String keyword);
+
     @Modifying
     @Transactional
     @Query(value = "SELECT * FROM user u WHERE u.email = :email AND u.password = md5(:password)", nativeQuery=true)
