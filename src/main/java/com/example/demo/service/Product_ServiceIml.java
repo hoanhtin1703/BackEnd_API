@@ -334,7 +334,6 @@ public class Product_ServiceIml implements Product_Service {
     public Product_Size_Model saveProductSize(Product_Size_Model productSizeModel) {
         return productSizeReponsitory.save(productSizeModel);
     }
-    //
 
 
 
@@ -362,4 +361,26 @@ public class Product_ServiceIml implements Product_Service {
         return siteURL.replace(request.getServletPath(), "");
     }
 
+// Oder Services by Quan
+    @Autowired
+    private OderReposity oderReposity;
+    @Override
+    public List<Oder_Model> getAllOder() {
+        return (List<Oder_Model>) oderReposity.findAll();
+    }
+
+    @Override
+    public Oder_Model addOder(Oder_Model oderModel) {
+        return (Oder_Model) oderReposity.save(oderModel);
+    }
+
+    @Override
+    public void deleteOder(Long id) {
+        oderReposity.deleteById(id);
+    }
+
+    @Override
+    public Optional<Oder_Model> findOderById(Long id) {
+        return oderReposity.findById(id);
+    }
 }
