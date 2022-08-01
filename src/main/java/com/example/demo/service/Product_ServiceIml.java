@@ -384,10 +384,10 @@ public class Product_ServiceIml implements Product_Service {
         userReposity.save(user);
     }
 
-    public String getSiteURL(HttpServletRequest request) {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
-    }
+//    public String getSiteURL(HttpServletRequest request) {
+//        String siteURL = request.getRequestURL().toString();
+//        return siteURL.replace(request.getServletPath(), "");
+//    }
 
 // Oder Services by Quan
     @Autowired

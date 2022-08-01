@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Product_Discount_Model;
 import com.example.demo.model.User_Model;
 import com.example.demo.repo.UserReposity;
 import com.example.demo.service.Mail_Service;
@@ -158,12 +159,13 @@ public class User_Controller {
 //        return null;
 //    }
 
-    @PostMapping("/forgot_password")
-    public ResponseEntity<Object> processForgotPassword(HttpServletRequest request) throws Exception {
-        String email = request.getParameter("email");
-        System.out.println(request.getLocalAddr());
-        System.out.println(request.getLocalName());
-        System.out.println(email);
+    @PostMapping("/auth/forgot_password")
+    public ResponseEntity<Object> processForgotPassword(@RequestBody HashMap<String,String> request) throws Exception {
+//        String email = request.getParameter("email");
+//        System.out.println(request.getLocalAddr());
+//        System.out.println(request.getLocalName());
+//        System.out.println(email);
+        String email = request.get("email");
         try {
             User_Model user = userReposity.findByEmail(email);
             HashMap<String,Object> body = new HashMap<>();
@@ -172,7 +174,8 @@ public class User_Controller {
             if (user != null) {
                 String token = RandomString.make(30);
                 user_service.updateResetPasswordToken(user, token);
-                String resetPasswordLink = user_service.getSiteURL(request) + "/user/reset_password?email=" + email + "&token=" + token;
+//                String resetPasswordLink = user_service.getSiteURL(request) + "/user/reset_password?email=" + email + "&token=" + token;
+                String resetPasswordLink = "http://localhost:3000/user/auth/reset_password/" + email + "/" + token;
                 mail_service.sendEmail(email, resetPasswordLink);
                 data.put("token", token);
                 body.put("data", data);
@@ -192,20 +195,22 @@ public class User_Controller {
     }
 
 
-    @GetMapping("/reset_password")
-    public ResponseEntity<Object> showResetPasswordForm(@Param(value = "token") String email, @Param(value = "token") String token) {
+    @GetMapping("/auth/reset_password/{email}/{token}")
+    public ResponseEntity<Object> showResetPasswordForm(@PathVariable("email") String email, @PathVariable("token") String token) {
 //        System.out.println("Reset Password");
-//        System.out.println(email);
-//        System.out.println(token);
+        System.out.println(email);
+        System.out.println(token);
         return null;
 
     }
 
-    @PostMapping("/reset_password")
-    public ResponseEntity<Object> processResetPassword(HttpServletRequest request) {
-        String email = request.getParameter("email");
-        String token = request.getParameter("token");
-        String password = request.getParameter("password");
+    @PostMapping("/auth/reset_password/{email}/{token}")
+    public ResponseEntity<Object> processResetPassword(@PathVariable("email") String email, @PathVariable("token") String token, @RequestBody HashMap<String,String> request) {
+//        String email = request.getParameter("email");
+//        String token = request.getParameter("token");
+//        String password = request.getParameter("password");
+
+        String password = request.get("password");
 
 //        System.out.println(email);
 //        System.out.println(token);
